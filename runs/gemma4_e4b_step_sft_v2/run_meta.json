@@ -1,0 +1,131 @@
+{
+  "seed": 42,
+  "model": "google/gemma-4-E4B-it",
+  "max_seq_length": 2048,
+  "output_dir": "runs/gemma4_e4b_step_sft_v2",
+  "stages": [
+    {
+      "name": "middle_warmup",
+      "data_path": "data/logickor_sft_middle_convert.jsonl",
+      "stage_dir": "runs/gemma4_e4b_step_sft_v2/01_middle_warmup",
+      "adapter_dir": "runs/gemma4_e4b_step_sft_v2/01_middle_warmup/adapter",
+      "dataset_stats": {
+        "row_count": 1200,
+        "turn_counts": {
+          "1": 600,
+          "2": 600
+        },
+        "question_id_count": 600,
+        "source_format": "sft_messages"
+      },
+      "split_stats": {
+        "train_question_ids": 540,
+        "eval_question_ids": 60,
+        "train_rows": 1080,
+        "eval_rows": 120
+      },
+      "train_args": {
+        "output_dir": "runs/gemma4_e4b_step_sft_v2/01_middle_warmup",
+        "num_train_epochs": 1.0,
+        "per_device_train_batch_size": 1,
+        "per_device_eval_batch_size": 1,
+        "gradient_accumulation_steps": 16,
+        "gradient_checkpointing": true,
+        "learning_rate": 2e-05,
+        "lr_scheduler_type": "cosine",
+        "optim": "adamw_torch",
+        "weight_decay": 0.0,
+        "logging_steps": 10,
+        "eval_steps": 20,
+        "eval_strategy": "steps",
+        "evaluation_strategy": "steps",
+        "save_strategy": "steps",
+        "load_best_model_at_end": true,
+        "metric_for_best_model": "eval_loss",
+        "greater_is_better": false,
+        "bf16": true,
+        "fp16": false,
+        "seed": 42,
+        "max_length": 2048,
+        "max_seq_length": 2048,
+        "assistant_only_loss": true,
+        "completion_only_loss": false,
+        "dataset_kwargs": {
+          "skip_prepare_dataset": false
+        },
+        "report_to": "none",
+        "save_steps": 20,
+        "save_total_limit": 1,
+        "warmup_ratio": 0.03,
+        "warmup_steps": 2
+      },
+      "best_checkpoint_only": true,
+      "best_model_checkpoint": "runs/gemma4_e4b_step_sft_v2/01_middle_warmup/checkpoint-68",
+      "best_eval_loss": 1.2631548643112183,
+      "global_step": 68
+    },
+    {
+      "name": "high_align",
+      "data_path": "data/logickor_sft_high_v2_converted.jsonl",
+      "stage_dir": "runs/gemma4_e4b_step_sft_v2/02_high_align",
+      "adapter_dir": "runs/gemma4_e4b_step_sft_v2/02_high_align/adapter",
+      "dataset_stats": {
+        "row_count": 1344,
+        "turn_counts": {
+          "1": 672,
+          "2": 672
+        },
+        "question_id_count": 672,
+        "source_format": "sft_messages"
+      },
+      "split_stats": {
+        "train_question_ids": 604,
+        "eval_question_ids": 68,
+        "train_rows": 1208,
+        "eval_rows": 136
+      },
+      "train_args": {
+        "output_dir": "runs/gemma4_e4b_step_sft_v2/02_high_align",
+        "num_train_epochs": 2.0,
+        "per_device_train_batch_size": 1,
+        "per_device_eval_batch_size": 1,
+        "gradient_accumulation_steps": 16,
+        "gradient_checkpointing": true,
+        "learning_rate": 5e-05,
+        "lr_scheduler_type": "cosine",
+        "optim": "adamw_torch",
+        "weight_decay": 0.0,
+        "logging_steps": 10,
+        "eval_steps": 20,
+        "eval_strategy": "steps",
+        "evaluation_strategy": "steps",
+        "save_strategy": "steps",
+        "load_best_model_at_end": true,
+        "metric_for_best_model": "eval_loss",
+        "greater_is_better": false,
+        "bf16": true,
+        "fp16": false,
+        "seed": 42,
+        "max_length": 2048,
+        "max_seq_length": 2048,
+        "assistant_only_loss": true,
+        "completion_only_loss": false,
+        "dataset_kwargs": {
+          "skip_prepare_dataset": false
+        },
+        "report_to": "none",
+        "save_steps": 20,
+        "save_total_limit": 1,
+        "warmup_ratio": 0.03,
+        "warmup_steps": 4
+      },
+      "best_checkpoint_only": true,
+      "best_model_checkpoint": "runs/gemma4_e4b_step_sft_v2/02_high_align/checkpoint-80",
+      "best_eval_loss": 1.0831385850906372,
+      "global_step": 152
+    }
+  ],
+  "final_adapter_dir": "runs/gemma4_e4b_step_sft_v2/adapter",
+  "merged_dir": null,
+  "save_merged_only": false
+}

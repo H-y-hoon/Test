@@ -1,0 +1,48 @@
+# Continue DPO directly from the best curriculum-SFT adapter without saving a merged model.
+model: runs/gemma4_e4b_step_sft_v2/adapter
+data_path: data/logickor_dpo_reviewed_v2_full.jsonl
+
+# Gemma4 is registered as multimodal, but this project trains its CausalLM path
+# with text-only LogicKor conversations.
+force_text_only: true
+
+split:
+  train_ratio: 0.9
+
+training:
+  cuda_visible_devices: "2"
+  num_train_epochs: 3
+  learning_rate: 1.0e-6
+  lr_scheduler_type: cosine
+  warmup_steps: 0
+  optim: adamw_torch
+  weight_decay: 0.0
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 16
+  gradient_checkpointing: true
+  logging_steps: 1
+  eval_steps: 20
+  save_checkpoints: true
+  save_steps: 20
+  save_total_limit: 1
+  load_best_model_at_end: true
+  best_checkpoint_only: true
+  metric_for_best_model: eval_loss
+  greater_is_better: false
+  bf16: true
+  fp16: false
+  dataset_num_proc: null
+
+  # Original DPO with a frozen copy of the starting SFT adapter as reference.
+  beta: 0.1
+  loss_type: sigmoid
+  reference_free: false
+  precompute_ref_log_probs: false
+  use_logits_to_keep: true
+
+  # Prompt is user-assistant-user; chosen/rejected are final assistant turns.
+  max_length: 4096
+  max_prompt_length: 2048
+  max_completion_length: 1536
+  truncation_mode: keep_end

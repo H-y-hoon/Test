@@ -1,0 +1,29 @@
+# Secrets
+.env
+.env.*
+api.env
+*.key
+
+# Python and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Downloaded models and caches
+.cache/
+models/
+
+# Reproducible experiment outputs
+generated/
+evaluated/
+results/
+runs/**/checkpoint-*/
+runs/**/optimizer.pt
+runs/**/scheduler.pt
+runs/**/rng_state*.pth
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/

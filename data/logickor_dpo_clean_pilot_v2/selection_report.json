@@ -1,0 +1,206 @@
+{
+  "source": "data/logickor_dpo_reviewed_v2_full.jsonl",
+  "settings": {
+    "tokenizer": "google/gemma-4-E4B-it",
+    "per_category": 25,
+    "seed": 42,
+    "max_prompt_length": 2048,
+    "max_completion_length": 1536,
+    "max_length": 4096
+  },
+  "summaries": {
+    "source": {
+      "rows": 380,
+      "category_counts": {
+        "글쓰기": 86,
+        "문법": 81,
+        "수학": 57,
+        "이해": 68,
+        "추론": 30,
+        "코딩": 58
+      },
+      "confidence_counts": {
+        "high": 301,
+        "medium": 79
+      },
+      "decision_counts": {
+        "accept_pair": 325,
+        "swap_pair": 55
+      },
+      "chosen_tokens_mean": 267.16,
+      "rejected_tokens_mean": 513.09,
+      "length_ratio_mean": 3.617,
+      "length_ratio_p50": 3.252,
+      "length_ratio_p90": 6.431,
+      "length_ratio_max": 14.944,
+      "rejected_longer_count": 308
+    },
+    "control_balanced": {
+      "rows": 150,
+      "category_counts": {
+        "글쓰기": 25,
+        "문법": 25,
+        "수학": 25,
+        "이해": 25,
+        "추론": 25,
+        "코딩": 25
+      },
+      "confidence_counts": {
+        "high": 113,
+        "medium": 37
+      },
+      "decision_counts": {
+        "accept_pair": 128,
+        "swap_pair": 22
+      },
+      "chosen_tokens_mean": 289.96,
+      "rejected_tokens_mean": 578.59,
+      "length_ratio_mean": 3.998,
+      "length_ratio_p50": 3.73,
+      "length_ratio_p90": 7.031,
+      "length_ratio_max": 14.944,
+      "rejected_longer_count": 122
+    },
+    "high_balanced": {
+      "rows": 150,
+      "category_counts": {
+        "글쓰기": 25,
+        "문법": 25,
+        "수학": 25,
+        "이해": 25,
+        "추론": 25,
+        "코딩": 25
+      },
+      "confidence_counts": {
+        "high": 150
+      },
+      "decision_counts": {
+        "accept_pair": 128,
+        "swap_pair": 22
+      },
+      "chosen_tokens_mean": 279.05,
+      "rejected_tokens_mean": 543.19,
+      "length_ratio_mean": 3.966,
+      "length_ratio_p50": 3.502,
+      "length_ratio_p90": 7.314,
+      "length_ratio_max": 14.944,
+      "rejected_longer_count": 122
+    },
+    "high_length_priority_balanced": {
+      "rows": 150,
+      "category_counts": {
+        "글쓰기": 25,
+        "문법": 25,
+        "수학": 25,
+        "이해": 25,
+        "추론": 25,
+        "코딩": 25
+      },
+      "confidence_counts": {
+        "high": 150
+      },
+      "decision_counts": {
+        "accept_pair": 139,
+        "swap_pair": 11
+      },
+      "chosen_tokens_mean": 255.71,
+      "rejected_tokens_mean": 459.14,
+      "length_ratio_mean": 2.41,
+      "length_ratio_p50": 1.931,
+      "length_ratio_p90": 4.786,
+      "length_ratio_max": 6.467,
+      "rejected_longer_count": 124
+    }
+  },
+  "length_feasibility": [
+    {
+      "max_ratio": 1.2,
+      "rows": 31,
+      "category_counts": {
+        "추론": 1,
+        "수학": 1,
+        "코딩": 5,
+        "이해": 3,
+        "글쓰기": 20,
+        "문법": 1
+      },
+      "balanced_per_category": 1
+    },
+    {
+      "max_ratio": 1.33,
+      "rows": 49,
+      "category_counts": {
+        "추론": 1,
+        "수학": 2,
+        "코딩": 12,
+        "이해": 4,
+        "글쓰기": 29,
+        "문법": 1
+      },
+      "balanced_per_category": 1
+    },
+    {
+      "max_ratio": 1.5,
+      "rows": 58,
+      "category_counts": {
+        "추론": 2,
+        "수학": 3,
+        "코딩": 13,
+        "이해": 5,
+        "글쓰기": 34,
+        "문법": 1
+      },
+      "balanced_per_category": 1
+    },
+    {
+      "max_ratio": 2.0,
+      "rows": 98,
+      "category_counts": {
+        "추론": 4,
+        "수학": 7,
+        "코딩": 21,
+        "이해": 15,
+        "글쓰기": 45,
+        "문법": 6
+      },
+      "balanced_per_category": 4
+    },
+    {
+      "max_ratio": 2.5,
+      "rows": 128,
+      "category_counts": {
+        "추론": 4,
+        "수학": 10,
+        "코딩": 28,
+        "이해": 20,
+        "글쓰기": 52,
+        "문법": 14
+      },
+      "balanced_per_category": 4
+    },
+    {
+      "max_ratio": 3.0,
+      "rows": 149,
+      "category_counts": {
+        "추론": 5,
+        "수학": 11,
+        "코딩": 29,
+        "이해": 27,
+        "글쓰기": 56,
+        "문법": 21
+      },
+      "balanced_per_category": 5
+    }
+  ],
+  "main_arm_comparison": {
+    "overlap_rows": 113,
+    "replaced_rows": 37,
+    "category_counts_equal": true,
+    "decision_counts_equal": true
+  },
+  "outputs": {
+    "control_balanced": "data/logickor_dpo_clean_pilot_v2/control_balanced.jsonl",
+    "high_balanced": "data/logickor_dpo_clean_pilot_v2/high_balanced.jsonl",
+    "high_length_priority_balanced": "data/logickor_dpo_clean_pilot_v2/high_length_priority_balanced.jsonl"
+  }
+}

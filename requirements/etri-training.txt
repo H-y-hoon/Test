@@ -1,0 +1,16 @@
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+accelerate==1.14.0
+datasets==4.3.0
+faiss-cpu==1.14.3
+pandas==3.0.3
+peft==0.19.1
+PyYAML==6.0.3
+safetensors==0.8.0
+tokenizers==0.22.2
+torch==2.10.0
+torchvision==0.25.0
+tqdm==4.68.3
+triton==3.6.0
+transformers @ git+https://github.com/huggingface/transformers.git@4ed3da8899317eb1a292774a6b2820e257f2fcfa
+trl==0.24.0

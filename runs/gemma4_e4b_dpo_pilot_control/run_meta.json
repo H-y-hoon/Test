@@ -1,0 +1,128 @@
+{
+  "seed": 42,
+  "model": "/home/yanghoon/workspace/project/etri/LogicKor/runs/gemma4_e4b_step_sft_v2/adapter",
+  "data_path": "data/logickor_dpo_clean_pilot_v2/control_balanced.jsonl",
+  "base_model": "google/gemma-4-E4B-it",
+  "dataset_stats": {
+    "row_count": 150,
+    "category_counts": {
+      "글쓰기": 25,
+      "문법": 25,
+      "수학": 25,
+      "이해": 25,
+      "추론": 25,
+      "코딩": 25
+    },
+    "unique_id_count": 150
+  },
+  "split_stats": {
+    "train_rows": 135,
+    "eval_rows": 15,
+    "train_ids": 135,
+    "eval_ids": 15,
+    "train_category_counts": {
+      "글쓰기": 22,
+      "문법": 21,
+      "수학": 24,
+      "이해": 21,
+      "추론": 24,
+      "코딩": 23
+    },
+    "eval_category_counts": {
+      "글쓰기": 3,
+      "문법": 4,
+      "수학": 1,
+      "이해": 4,
+      "추론": 1,
+      "코딩": 2
+    }
+  },
+  "token_stats": {
+    "prompt_tokens": {
+      "min": 127,
+      "mean": 335.87,
+      "p50": 277,
+      "p95": 686,
+      "max": 900
+    },
+    "chosen_tokens": {
+      "min": 41,
+      "mean": 289.96,
+      "p50": 168,
+      "p95": 1061,
+      "max": 1301
+    },
+    "rejected_tokens": {
+      "min": 53,
+      "mean": 578.59,
+      "p50": 571,
+      "p95": 1079,
+      "max": 1316
+    },
+    "truncation_counts": {
+      "prompt": 0,
+      "chosen": 0,
+      "rejected": 0,
+      "combined_after_individual_limits": 0
+    }
+  },
+  "trl_contract": "prompt messages + assistant-message chosen/rejected",
+  "train_args": {
+    "output_dir": "runs/gemma4_e4b_dpo_pilot_control",
+    "num_train_epochs": 1.0,
+    "learning_rate": 1e-06,
+    "lr_scheduler_type": "cosine",
+    "warmup_steps": 0,
+    "optim": "adamw_torch",
+    "weight_decay": 0.0,
+    "per_device_train_batch_size": 1,
+    "per_device_eval_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "gradient_checkpointing": true,
+    "logging_steps": 1,
+    "eval_steps": 3,
+    "eval_strategy": "steps",
+    "save_strategy": "steps",
+    "load_best_model_at_end": true,
+    "metric_for_best_model": "eval_loss",
+    "greater_is_better": false,
+    "bf16": true,
+    "fp16": false,
+    "seed": 42,
+    "max_length": 4096,
+    "max_prompt_length": 2048,
+    "max_completion_length": 1536,
+    "truncation_mode": "keep_end",
+    "beta": 0.1,
+    "loss_type": "sigmoid",
+    "reference_free": false,
+    "use_logits_to_keep": true,
+    "model_adapter_name": "default",
+    "ref_adapter_name": "reference",
+    "precompute_ref_log_probs": false,
+    "dataset_num_proc": null,
+    "report_to": "none",
+    "save_steps": 3,
+    "save_total_limit": 1
+  },
+  "trl_optional_flags_normalized": [
+    "_deepspeed_available",
+    "_fastapi_available",
+    "_joblib_available",
+    "_llm_blender_available",
+    "_math_verify_available",
+    "_mergekit_available",
+    "_pydantic_available",
+    "_requests_available",
+    "_unsloth_available",
+    "_uvicorn_available",
+    "_vllm_ascend_available",
+    "_weave_available"
+  ],
+  "reference_policy": "frozen copy of the starting SFT adapter on the shared base model",
+  "global_step": 9,
+  "best_checkpoint_only": true,
+  "best_model_checkpoint": "runs/gemma4_e4b_dpo_pilot_control/checkpoint-9",
+  "best_eval_loss": 0.6139833927154541,
+  "adapter_dir": "runs/gemma4_e4b_dpo_pilot_control/adapter"
+}
